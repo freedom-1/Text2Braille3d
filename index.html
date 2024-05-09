@@ -19,7 +19,7 @@
 		margin: 0px 8px;
 	}
 	pre, code {
-		font: 12px/20px Monaco, monospace;
+		font: 12px/20px Poppins, monospace;
 		border: 1px solid #CCC;
 		border-radius: 3px;
 		background: #F9F9F9;
@@ -31,7 +31,7 @@
 		width: 100%;
 	}
 	textarea {
-		font: 12px/20px Monaco, monospace;
+		font: 12px/20px Poppins, monospace;
 		padding: 5px 8px;
 		width: 300px;
 		height: 100px;
@@ -78,17 +78,17 @@
 		
 		$("#viewer .parametersdiv .parameterstable").after(moreElement);
 		
-		setLanguage("german");
+		setLanguage("uzbek");
 	}
 	
 	function setLanguage(lang)
 	{
-		if (lang == "german")
+		if (lang == "uzbek")
 		{
-			// var $statusBar = $("#viewer .statusdiv");
-			// $statusBar.children("span")[0].innerHTML = "Fertig."
+			var $statusBar = $("#viewer .statusdiv");
+			$statusBar.children("span")[0].innerHTML = "Fertig."
 			
-			$("#viewer .parametersdiv button")[0].innerHTML = "3D Modell generieren";
+			$("#viewer .parametersdiv button")[0].innerHTML = "3D Modelni generatsiya qilish";
 		}
 	}
 	
@@ -102,7 +102,7 @@
 		}
 		
 		var moreLink = $("#more")[0];
-		moreLink.innerHTML = (show) ? "simple Einstellungen" : "Details einstellen";
+		moreLink.innerHTML = (show) ? "Sodda sozlamalar" : "Ko'proq sozlamalar";
 		moreLink.href = "javascript:showDetails(" + !show + ");";
 	}
 	
@@ -131,10 +131,10 @@
 	}
 
 </script>
-<title>Text to 3d printable Braille</title>
+<title>3DBrailleLatin</title>
 </head>
 <body onload="onload()">
-<h1>Text to 3d printable Braille</h1>
+<h1 align="center">Oddiy matnni 3D Brayl yozuviga o'tkazish</h1>
 <div id="viewer"></div>
 </body>
 </html>

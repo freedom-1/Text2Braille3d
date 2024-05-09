@@ -11,7 +11,6 @@ var characters =
 {
 	"a" : 1,	//⠁
 	"b" : 12,	//⠃
-	"c" : 14,	//⠉
 	"d" : 145,	//⠙
 	"e" : 15,	//⠑
 	"f" : 124,	//⠋
@@ -25,41 +24,33 @@ var characters =
 	"n" : 1345,	//⠝
 	"o" : 135,	//⠕
 	"p" : 1234,	//⠏
-	"q" : 12345,//⠟
+	"q" : 13456,//⠟
 	"r" : 1235,	//⠗
 	"s" : 234,	//⠎
 	"t" : 2345,	//⠞
 	"u" : 136,	//⠥
-	"v" : 1236,	//⠧
-	"w" : 2456,	//⠺
-	"x" : 1346,	//⠭
-	"y" : 13456,//⠽
+	"v" : 2456,	//⠺
+	"x" : 1456,	//⠭
+	"y" : 12346,//⠽
 	"z" : 1356,	//⠵
 
-	"ä" : 345,	//⠜
-	"ö" : 246,	//⠪
-	"ü" : 1256,	//⠳
-	"ß" : 2346,	//⠮
-	
-	"st" : 23456,//⠾
-	"au" : 16,	//⠡
-	"eu" : 126,	//⠣
-	"ei" : 146,	//⠩
-	"ch" : 1456,//⠹
-	"sch": 156,	//⠱
-	"äu" : 34,	//⠌
-	"ie" : 346,	//⠬
+	"o'": 1236,
+	"g'": 12456,
+	"sh": 156,
+	"ch": 12345,
+
+
 	
 	"1" : 1,	//⠁
 	"2" : 12,	//⠃
-	"3" : 14,	//⠉
-	"4" : 145,	//⠙
-	"5" : 15,	//⠑
-	"6" : 124,	//⠋
-	"7" : 1245,	//⠛
-	"8" : 125,	//⠓
-	"9" : 24,	//⠊
-	"0" : 245,	//⠚
+	"3" : 145,	//⠙
+	"4" : 15,	//⠑
+	"5" : 124,	//⠋
+	"6" : 1245,	//⠛
+	"7" : 125,	//⠓
+	"8" : 24,	//⠊
+	"9" : 245,	//⠚
+	"0" : 13,
 	
 	"1." : 2,	//⠂
 	"2." : 23,	//⠆
@@ -72,12 +63,9 @@ var characters =
 	"9." : 35,	//⠔
 	"0." : 356,	//⠴
 	
-	"&" : 12346,//⠯
-	"%" : 123456,//⠿
 	"[" : 12356,//⠷
 	"]" : 23456,//⠾
 	"`" : 1246,	//⠫
-	"^" : 12456,//⠻
 	"#" : 3456,	//⠼
 	"$" : 46,	//⠨
 	"." : 3,	//⠄
@@ -262,12 +250,12 @@ function generate(text)
 		
 		//a WHOLE WORD in uppercase letters is prefaced by the character >
 		//TODO: make this combinable with single uppercase letters!
-		// find = /(\s|^)([A-ZÄÖÜ]+)(?=\s|$)/g;
+		// find = /(\s|^)([A-Z]+)(?=\s|$)/g;
 		// replace = "$1>$2";
 		// text = text.replace(find, replace).toLowerCase();
 		
 		//single uppercase letters are prefaced by the character $
-		find = /([A-ZÄÖÜ])/g;
+		find = /([A-Z])/g;
 		replace = "$$$1";
 		text = text.replace(find, replace).toLowerCase();
 		
@@ -296,7 +284,7 @@ function generate(text)
 	
 	if (parameters.contractions)
 	{
-		find = /(st|au|eu|ei|sch|ch|äu|ie)/g;
+		find = /(sh|o'|g'|ch)/g;
 		replace = "_$1_";
 		text = text.replace(find, replace);
 	}
@@ -410,27 +398,27 @@ function getParameterDefinitions()
 	var debug = false;
 	
 	var parameterDefinitions = [
-		{ name: 'text', caption: 'Text', type: 'longtext', initial: 'Hello\nWorld' },
-		{ name: 'upper', caption: 'Großbuchstaben zulassen', type: 'bool', initial: false },
-		{ name: 'contractions', caption: 'Kontraktionen', type: 'bool', initial: true },
-		{ name: 'straight', caption: 'Direkte Konvertierung', type: 'bool', initial: false },
+		{ name: 'text', caption: 'Matn maydoni', type: 'longtext', initial: 'Assalomu\nAlaykum' },
+		{ name: 'upper', caption: 'Katta harfda yozish', type: 'bool', initial: false },
+		{ name: 'contractions', caption: 'Qisqartmalardan foydalanish', type: 'bool', initial: true },
+		{ name: 'straight', caption: "To'g'ridan-to'g'ri konvertatsiya", type: 'bool', initial: false },
 	
-		{ name: 'form_size', caption: 'Form-Größe [0 - 10]', type: 'float', initial: 5.0 },
-		// { name: 'dot_distance', caption: 'Punkt-Abstand', type: 'float', initial: 2.5 },
-		// { name: 'form_distance', caption: 'Form-Abstand', type: 'float', initial: 6.0 },
-		// { name: 'line_height', caption: 'Zeilen-Höhe', type: 'float', initial: 10.0 },
-	  	{ name: 'dot_height', caption: 'Punkt-Höhe [0.5 - 0.8]', type: 'float', initial: 0.7 },
-		{ name: 'dot_diameter', caption: 'Punkt-Durchmesser [1.4 - 1.6]', type: 'float', initial: 1.5 },
+		{ name: 'form_size', caption: 'Shakl hajmi [0 - 10]', type: 'float', initial: 5.0 },
+		// { name: 'dot_distance', caption: "Nuqta oralig'i", type: 'float', initial: 2.5 },
+		// { name: 'form_distance', caption: "Shakl oralig'i", type: 'float', initial: 6.0 },
+		// { name: 'line_height', caption: 'Chiziq balandligi', type: 'float', initial: 10.0 },
+	  	{ name: 'dot_height', caption: 'Nuqta balandligi [0.5 - 0.8]', type: 'float', initial: 0.7 },
+		{ name: 'dot_diameter', caption: 'Nuqta diametri [1.4 - 1.6]', type: 'float', initial: 1.5 },
 	
-		{ name: 'plate_thickness', caption: 'Platten-Stärke', type: 'float', initial: 2.0 },
-		{ name: 'plate_margin', caption: 'Rand', type: 'float', initial: 5.0 },
+		{ name: 'plate_thickness', caption: 'Plitalar qalinligi', type: 'float', initial: 2.0 },
+		{ name: 'plate_margin', caption: 'Tasodifiy qiymat', type: 'float', initial: 5.0 },
 	
-		{ name: 'reference_corner', caption: 'Referenz Eck', type: 'bool', initial: true },
-		{ name: 'stands', caption: 'Stützen generieren', type: 'bool', initial: true },
+		{ name: 'reference_corner', caption: "Eck ma'lumoti", type: 'bool', initial: true },
+		{ name: 'stands', caption: "Qo'llab-quvvatlashlarni yaratish", type: 'bool', initial: true },
 
-		{ name: 'resolution', caption: 'Auflösung', type: 'int', initial: 16, visible: debug },
-		{ name: 'dot_shape', caption: 'Punktform', type: 'choice', values: ['sphere', 'cylinder', 'smooth'], captions: ['Halbkugel', 'Zylinder', 'Nahtlos'], initial: 'smooth' , visible: debug },
-		{ name: 'debug_dot', caption: 'Punkt im Detail', type: 'bool', initial: false, visible: debug }
+		{ name: 'resolution', caption: "O'lchamlar", type: 'int', initial: 16, visible: debug },
+		{ name: 'dot_shape', caption: 'Punktform', type: 'choice', values: ['sphere', 'cylinder', 'smooth'], captions: ['Yarim shar', 'Silindr', 'Uzluksiz'], initial: 'smooth' , visible: debug },
+		{ name: 'debug_dot', caption: 'Batafsil ishora', type: 'bool', initial: false, visible: debug }
 	];
 	
 	return parameterDefinitions;
@@ -438,7 +426,7 @@ function getParameterDefinitions()
 
 function main(params)
 {
-	log("start");
+	log("boshlandi");
 	
 	parameters = params;
 	master_dot = null;

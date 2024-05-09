@@ -1,36 +1,4 @@
-/*
- * lightgl.js
- * http://github.com/evanw/lightgl.js/
- *
- * Copyright 2011 Evan Wallace
- * Released under the MIT license
- */
 var GL = (function() {
-
-	// src/texture.js
-	// Provides a simple wrapper around WebGL textures that supports render-to-texture.
-	// ### new GL.Texture(width, height[, options])
-	//
-	// The arguments `width` and `height` give the size of the texture in texels.
-	// WebGL texture dimensions must be powers of two unless `filter` is set to
-	// either `gl.NEAREST` or `gl.LINEAR` and `wrap` is set to `gl.CLAMP_TO_EDGE`
-	// (which they are by default).
-	//
-	// Texture parameters can be passed in via the `options` argument.
-	// Example usage:
-	//
-	//     var t = new GL.Texture(256, 256, {
-	//       // Defaults to gl.LINEAR, set both at once with "filter"
-	//       magFilter: gl.NEAREST,
-	//       minFilter: gl.LINEAR,
-	//
-	//       // Defaults to gl.CLAMP_TO_EDGE, set both at once with "wrap"
-	//       wrapS: gl.REPEAT,
-	//       wrapT: gl.REPEAT,
-	//
-	//       format: gl.RGB, // Defaults to gl.RGBA
-	//       type: gl.FLOAT // Defaults to gl.UNSIGNED_BYTE
-	//     });
 
 
 	function Texture(width, height, options) {
@@ -70,20 +38,6 @@ var GL = (function() {
 			gl.bindTexture(gl.TEXTURE_2D, null);
 		},
 
-		// ### .drawTo(callback[, options])
-		//
-		// Render all draw calls in `callback` to this texture. This method
-		// sets up a framebuffer with this texture as the color attachment
-		// and a renderbuffer as the depth attachment.  The viewport is
-		// temporarily changed to the size of the texture.
-		//
-		// The depth buffer can be omitted via `options` as shown in the
-		// example below:
-		//
-		//     texture.drawTo(function() {
-		//       gl.clearColor(1, 0, 0, 1);
-		//       gl.clear(gl.COLOR_BUFFER_BIT);
-		//     }, { depth: false });
 		drawTo: function(callback, options) {
 
 			options = options || {};
@@ -112,10 +66,6 @@ var GL = (function() {
 			gl.viewport(v[0], v[1], v[2], v[3]);
 		},
 
-		// ### .swapWith(other)
-		//
-		// Switch this texture with `other`, useful for the ping-pong rendering
-		// technique used in multi-stage rendering.
 		swapWith: function(other) {
 			var temp;
 			temp = other.id;

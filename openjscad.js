@@ -772,7 +772,7 @@ OpenJsCad.Processor.prototype = {
     this.statusdiv.appendChild(this.statusspan);
     this.statusdiv.appendChild(this.statusbuttons);
     this.abortbutton = document.createElement("button");
-    this.abortbutton.innerHTML = "Abort";
+    this.abortbutton.innerHTML = "Bekor qilish";
     this.abortbutton.onclick = function(e) {
       that.abort();
     };
@@ -928,7 +928,7 @@ OpenJsCad.Processor.prototype = {
   
   updateDownloadLink: function() {
     var ext = this.selectedFormatInfo().extension;
-    this.generateOutputFileButton.innerHTML = "Generate "+ext.toUpperCase();
+    this.generateOutputFileButton.innerHTML = ext.toUpperCase()+" ga generatsiya qilish";
   },
   
   clearViewer: function() {
@@ -943,7 +943,7 @@ OpenJsCad.Processor.prototype = {
     {
       //todo: abort
       this.processing=false;
-      this.statusspan.innerHTML = "Aborted.";
+      this.statusspan.innerHTML = "Bekor qilindi.";
       this.worker.terminate();
       this.enableItems();
       if(this.onchange) this.onchange();
@@ -1069,7 +1069,7 @@ OpenJsCad.Processor.prototype = {
     this.setError("");
     this.clearViewer();
     this.processing = true;
-    this.statusspan.innerHTML = "Processing, please wait...";
+    this.statusspan.innerHTML = "Jarayon boshlandi ilitmos ozgina vaqt kuting";
     this.enableItems();
     var that = this;
     var paramValues = this.getParamValues();
@@ -1084,12 +1084,12 @@ OpenJsCad.Processor.prototype = {
         if(err)
         {
           that.setError(err);
-          that.statusspan.innerHTML = "Error.";
+          that.statusspan.innerHTML = "Xato.";
         }
         else
         {
           that.setRenderedObjects(obj);
-          that.statusspan.innerHTML = "Ready.";
+          that.statusspan.innerHTML = "Tayyor.";
         }
         that.enableItems();
         if(that.onchange) that.onchange();
@@ -1102,7 +1102,7 @@ OpenJsCad.Processor.prototype = {
         var obj = OpenJsCad.parseJsCadScriptSync(this.script, paramValues, this.debugging);
         that.setRenderedObjects(obj);
         that.processing = false;
-        that.statusspan.innerHTML = "Ready.";
+        that.statusspan.innerHTML = "Tayyor.";
       }
       catch(e)
       {
@@ -1113,7 +1113,7 @@ OpenJsCad.Processor.prototype = {
           errtxt = e.toString();
         }
         that.setError(errtxt);
-        that.statusspan.innerHTML = "Error.";
+        that.statusspan.innerHTML = "Xato.";
       }
       that.enableItems();
       if(that.onchange) that.onchange();
@@ -1197,12 +1197,12 @@ OpenJsCad.Processor.prototype = {
   formatInfo: function(format) {
     return {
       stl: {
-        displayName: "STL",
+        displayName: "STL FAYL",
         extension: "stl",
         mimetype: "application/sla",
         },
       x3d: {
-        displayName: "X3D",
+        displayName: "X3D FAYL",
         extension: "x3d",
         mimetype: "model/x3d+xml",
         },
@@ -1216,7 +1216,7 @@ OpenJsCad.Processor.prototype = {
 
   downloadLinkTextForCurrentObject: function() {
     var ext = this.selectedFormatInfo().extension;
-    return "Download "+ext.toUpperCase();
+    return ext.toUpperCase() + "ni yuklash";
   },
 
   generateOutputFileBlobUrl: function() {
